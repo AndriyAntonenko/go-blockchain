@@ -12,12 +12,12 @@ import (
 const HASH_LEADING_ZEROS = 4
 
 type Blockchain struct {
-	chain []Block
+	chain []*Block
 }
 
 func NewBlockchain() *Blockchain {
 	blockchain := &Blockchain{
-		chain: []Block{},
+		chain: []*Block{},
 	}
 
 	// add genesis block
@@ -34,11 +34,11 @@ func (b *Blockchain) CreateBlock(proof int64, prevHash string, data string) *Blo
 		data,
 	)
 
-	b.chain = append(b.chain, *block)
+	b.chain = append(b.chain, block)
 	return block
 }
 
-func (b *Blockchain) GetLastBlock() Block {
+func (b *Blockchain) GetLastBlock() *Block {
 	return b.chain[len(b.chain)-1]
 }
 
